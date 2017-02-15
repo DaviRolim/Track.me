@@ -7,10 +7,10 @@
 </div> 
 <!--div class="row justify-content-md-center"-->
 <ul class="members">
-  <li *ngFor="let p of filterPerson()" class="list-group-item list-group-item-action" (click)="onSelect(p)"
+  <li *ngFor="let p of filterPerson();  let i = index; trackBy: trackByF" class="list-group-item list-group-item-action" (click)="onSelect(p)"
       [class.selected]="p === user">
-    <span class="badge">{{ p.id }}</span>
-    <span>{{ p.nome }}</span>
+    <span class="badge">{{ i + 1 }}</span>
+    <span>{{ p?.nome }}</span>
   </li>
 </ul>
 <!--Fazer o formulario e usar um ngIf pra só aparecer se o botao for clicado-->
@@ -59,6 +59,7 @@
 
 </div>
 </div>
+
 
 <!--h2 class="text-center">Search for members</h2>
 

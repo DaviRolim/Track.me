@@ -1,12 +1,12 @@
 export class Pessoa {
 constructor(
-    private nome: string,
-    private idade: number,
-    private cpf: String,
-    private rg: string,
-    private id: number,
-    private address?: any[],
-    private tasks?: any[]
+    public nome: string,
+    public idade: number,
+    public phone: String,
+    public email: string,
+    public id: number,
+    public address?: any[],
+    public tasks?: any[]
     ) {};
 
 }

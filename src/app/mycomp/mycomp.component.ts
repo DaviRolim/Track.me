@@ -10,7 +10,7 @@ import { Pessoa } from '../shared/ppl';
   templateUrl: './mycomp.component.html',
   styleUrls: ['./mycomp.component.css']
 })
-export class MycompComponent implements OnInit, OnChanges {
+export class MycompComponent implements OnInit, OnChanges{
 
   lista: Pessoa[] = [];
   user: Pessoa;
@@ -22,6 +22,10 @@ export class MycompComponent implements OnInit, OnChanges {
 
   ngOnInit() {
    this.getPers();
+  }
+  ngOnChanges() {
+    console.log('look at me')
+    this.getPers();
   }
 
   getPers(): void {
@@ -41,7 +45,6 @@ export class MycompComponent implements OnInit, OnChanges {
   'address': {'street': 'R Antonio Correia de matos', 'country': 'Brasil', 'provincy': 'Paraíba'}
   };
     this.popService.addPerson(pessoa).subscribe(pes => this.lista.push(pes));
-    this.getPers();
   }
 
   personClick(id: number):number {
@@ -61,14 +64,10 @@ export class MycompComponent implements OnInit, OnChanges {
     });
   }
 
-  onSelect(p: any){
+  onSelect(p: Pessoa){
     this.user = p;
   }
 
-  ngOnChanges() {
-    console.log('opa');
-    this.getPers();
-  }
  }
 
 
