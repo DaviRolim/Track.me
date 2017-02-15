@@ -1,0 +1,30 @@
+<div class="text-center" style="margin-top: 5%">
+  <h2 >To-Do</h2>
+<div class="col-md-2"  [ngStyle]="ongoing">Em andamento</div>
+<div class="col-md-2" [ngStyle]="planning">Em planejamento</div>
+<div class="col-md-2" [ngStyle]="done">Finalizada</div>
+<div *ngIf="tasks">
+<div class="row justify-content-md-center">
+    <ul class="list-group">
+      <div *ngFor="let item of tasks; let i = index; trackBy: trackByFn">
+        <div *ngIf=" item.taskStatus == 'ongoing'">
+          <li class="list-group-item list-group-item-action" 
+          [ngStyle]="ongoing">{{ item.task }}
+          </li>
+        </div>
+        <div *ngIf=" item.taskStatus == 'planning'">
+          <li class="list-group-item list-group-item-action" 
+          [ngStyle]="planning">{{ item.task }}
+          </li>
+        </div>
+        <div *ngIf=" item.taskStatus == 'done'">
+          <li class="list-group-item list-group-item-action" 
+          [ngStyle]="done">{{ item.task }}
+          </li>
+        </div>
+       </div> 
+    </ul>
+  </div>
+</div>
+</div>
+

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="" style="font-family: verdana">
+      <img src="http://image.flaticon.com/icons/png/256/37/37496.png" alt="logo" width="30" height="30">
+      Track.Me
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="tasks" routerLinkActive="active">Tasks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Videos</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="#">Musics</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" routerLink="pessoas" routerLinkActive="active">Members</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+<router-outlet></router-outlet>
+</div>

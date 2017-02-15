@@ -1,0 +1,85 @@
+<div style="margin-top: 6%">
+<div class="row">
+<div class="col-md-4">
+<h3 class="">Filter members</h3>
+<div class="form-group col-md-11">
+  <input type="text" [(ngModel)]="filtro" id="filter" class="form-control">
+</div> 
+<!--div class="row justify-content-md-center"-->
+<ul class="members">
+  <li *ngFor="let p of filterPerson()" class="list-group-item list-group-item-action" (click)="onSelect(p)"
+      [class.selected]="p === user">
+    <span class="badge">{{ p.id }}</span>
+    <span>{{ p.nome }}</span>
+  </li>
+</ul>
+<!--Fazer o formulario e usar um ngIf pra só aparecer se o botao for clicado-->
+<button class="btn btn-success" type="button" (click)="addPers()">Add member</button>
+</div>
+<div *ngIf="user" class="col-md-8"> 
+<div style="padding-left: 4em; padding-top: 4em">
+<div class="col-md-8">
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+     <th class="text-center">Details</th> 
+    </thead>
+    <tr>
+      <td>Name:</td>
+      <td colspan="2">{{user.nome}}</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td colspan="2">{{user.email}}</td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td colspan="2">{{user.phone}}</td>
+    </tr>
+    <tr>
+      <th>Address</th>
+    </tr>
+    <tr>
+      <td>Country:</td>
+      <td colspan="2">{{user.address.country}}</td>
+    </tr>
+    <tr>
+      <td>Provincy:</td>
+      <td colspan="2">{{user.address.provincy}}</td>
+    </tr>
+    <tr>
+      <td>Street</td>
+      <td colspan="2">{{user.address.street}}</td>
+    </tr>
+
+
+  </table>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!--h2 class="text-center">Search for members</h2>
+
+<div class="row justify-content-md-center">
+<div class="form-group col-md-4">
+  <input type="text" [(ngModel)]="filtro" id="filter" class="form-control">
+</div> 
+</div>
+
+  <table class="table table-striped">
+<thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th class="text-center">Name</th>
+      <th>Age</th>
+    </tr>
+</thead>
+    <tr *ngFor="let item of filterPerson(); let i = index; trackBy: trackByFn">
+      <th scope="row">{{item.id}}</th>
+      <td class="col-md-6 text-center"><a routerLink="{{item.id}}">{{item.nome}}</a></td>
+      <td>{{item.idade}}</td>
+    </tr>
+  </table-->
+
