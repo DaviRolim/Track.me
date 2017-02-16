@@ -32,7 +32,7 @@ export class TodoComponent implements OnInit {
 
   getUser(id: string): any {
     this.popService.getById(id).subscribe(res => this.user = res);
-   this.popService.getById(id).subscribe(res => console.log(res.tasks.date));
+   this.popService.getById(id).subscribe(res => console.log(res.tasks));
     this.popService.getById(id).subscribe(res => {
       this.tasks = res.tasks;
     });

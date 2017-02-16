@@ -1,5 +1,7 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Rx';
 import 'rxjs/Rx';
 
 import { PopService } from './../shared/pop.service';
@@ -10,41 +12,41 @@ import { Pessoa } from '../shared/ppl';
   templateUrl: './mycomp.component.html',
   styleUrls: ['./mycomp.component.css']
 })
-export class MycompComponent implements OnInit, OnChanges{
+export class MycompComponent implements OnInit{
 
+  inscricao: Subscription;
+  showForm: boolean = false;
+  showDetail: boolean = true;
   lista: Pessoa[] = [];
   user: Pessoa;
   filtro: any = '';
-
-
+  model: Pessoa = new Pessoa('', null , '', '', {'street': '', 'provincy': '', 'country': ''}) ;
 
   constructor(private popService: PopService) { }
 
   ngOnInit() {
    this.getPers();
   }
-  ngOnChanges() {
-    console.log('look at me')
-    this.getPers();
-  }
+
 
   getPers(): void {
-    this.popService.getThemAll().subscribe(ppl => this.lista = ppl);
-    this.popService.getThemAll().subscribe(val => console.log(val));
+   this.inscricao =  this.popService.getThemAll().subscribe(ppl => this.lista = ppl);
+   console.log(this.lista);
   }
 
   addPers() {
-  console.log('addPers');
-    const pessoa: any = {
-// Tirar esses any e fazer um retorno de um MEMBER (CRIAR MEMBER)
-  'id': '13',
-  'phone': '(83) 98831-0001',
-  'idade': '40',
-  'nome': 'Lucien',
-  'email': 'luciliu@hotmail.com',
-  'address': {'street': 'R Antonio Correia de matos', 'country': 'Brasil', 'provincy': 'Paraíba'}
-  };
-    this.popService.addPerson(pessoa).subscribe(pes => this.lista.push(pes));
+     this.popService.addPerson(this.model);//.subscribe(pes => this.lista.push(pes)); (returning after delay updating after view)
+     this.lista.push(this.model);
+  }
+
+  clearFields(){
+    this.model.address.street = '';
+    this.model.address.provincy = '';
+    this.model.address.country = '';
+     this.model.email = '';
+     this.model.nome = '';
+     this.model.phone = '';
+     this.model.idade = null;
   }
 
   personClick(id: number):number {
@@ -64,10 +66,28 @@ export class MycompComponent implements OnInit, OnChanges{
     });
   }
 
-  onSelect(p: Pessoa){
+  onSelect(p: Pessoa) {
     this.user = p;
   }
 
- }
+  mostraCadastro() {
+  if (this.showDetail === true) {
+    this.showDetail = !this.showDetail;
+  }
+    this.showForm = !this.showForm;
+  }
 
+  toggleDetail() {
+  if (this.showForm === true) {
+    this.showForm = !this.showForm;
+  }
+  if(this.showDetail === false) {
+    this.showDetail = !this.showDetail;
+  }
+  }
 
+  OnDestroy(){
+    this.inscricao.unsubscribe();
+  }
+
+}

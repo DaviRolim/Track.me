@@ -27,7 +27,8 @@ export class PopService {
   getThemAll(): Observable<Pessoa[]>{
     return this.http
     .get('http://localhost:9000/pessoa/')
-    .map(response => response.json());
+    .map(res => res.json())
+    .catch(this.handleError);
   }
 
   getById(id: string): Observable<Pessoa> {
@@ -37,13 +38,13 @@ export class PopService {
 
   }
 
-  addPerson(person: string): Observable<Pessoa> {
-console.log(person);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers});
+  addPerson(person: Pessoa): Observable<Pessoa> {
+    console.log(person);
+    let heeaders = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: heeaders});
 
     return this.http
-    .post('http://localhost:9000/pessoa/', person, options)
+    .post('http://localhost:9000/pessoa/', person , options)
     .map(res => res.json());
   }
 
